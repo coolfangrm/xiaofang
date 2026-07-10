@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的储物间</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 顶部搜索栏 -->
+    <header id="header">
+        <h1>📦 我的储物间</h1>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="搜索资源...">
+            <span id="searchCount"></span>
+        </div>
+        <button id="themeToggle">🌙</button>
+    </header>
+
+    <!-- 左侧导航树 -->
+    <nav id="sidebar">
+        <ul id="navTree"></ul>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main id="content">
+        <!-- Markdown 内容渲染到这里 -->
+    </main>
+
+    <!-- 引入 Markdown 解析库 -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
