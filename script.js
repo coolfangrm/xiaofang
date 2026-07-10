@@ -32,46 +32,82 @@ async function initApp() {
     }
 }
 
-// =========================================
-// 简易 Markdown 解析器 (将 MD 转为 侧边栏+内容)
-// =========================================
+// 简单的 Markdown 解析器 (替换掉你原来的解析逻辑)
 function parseMarkdownToHTML(md) {
     const lines = md.split('\n');
-    let sidebarHtml = '<ul class="sidebar-menu">';
-    let contentHtml = '';
+    let html = '';
     let currentCategory = '';
+    let currentSub = '';
+    let gridOpen = false;
+
+    // 辅助函数：关闭当前的网格
+    const closeGrid = () => {
+        if (gridOpen) {
+            html += '</div>'; // 关闭 grid
+            gridOpen = false;
+        }
+    };
 
     lines.forEach(line => {
-        // 处理一级标题 (作为大分类)
-        if (line.startsWith('# ')) {
-            const title = line.replace('# ', '');
-            const id = generateId(title);
-            
-            // 侧边栏增加分类入口
-            sidebarHtml += `<li class="category-item"><a href="#${id}">${title}</a></li>`;
-            
-            // 内容区增加分类区块
-            contentHtml += `<section id="${id}" class="category-section"><h2>${title}</h2><div class="link-grid">`;
-            currentCategory = id;
+        line = line.trim();
+        if (!line) return;
+
+        // 1. 一级标题 (## 影视资源) -> 新的大板块
+        if (line.startsWith('## ')) {
+            closeGrid();
+            currentCategory = line.replace('## ', '');
+            html += `<section class="category-section">`;
+            html += `<h2 class="category-title">${currentCategory}</h2>`;
         } 
-        // 处理二级标题 (作为子分类)
-        else if (line.startsWith('## ')) {
-            const subTitle = line.replace('## ', '');
-            contentHtml += `<h3 class="sub-title">${subTitle}</h3>`;
-        }
-        // 处理列表项 (具体的链接)
+        // 2. 二级标题 (### 在线看剧) -> 子标题
+        else if (line.startsWith('### ')) {
+            closeGrid();
+            currentSub = line.replace('### ', '');
+            html += `<h3 class="sub-category-title">${currentSub}</h3>`;
+        } 
+        // 3. 列表项 (- [x] ...) -> 卡片
         else if (line.startsWith('- ')) {
-            const item = parseLinkItem(line);
-            contentHtml += item;
+            // 如果还没开始网格，就开启一个
+            if (!gridOpen) {
+                html += `<div class="card-grid">`;
+                gridOpen = true;
+            }
+
+            // 解析链接内容
+            const content = line.replace('- ', '').replace(/\[x\]|\[\]/g, '').trim();
+            // 简单分割：假设格式是 "图标 标题 描述" 或者直接是链接
+            // 这里做一个通用处理：如果是链接 [Title](Url)
+            let title = content;
+            let url = '#';
+            let desc = '';
+
+            // 尝试提取 Markdown 链接 [Title](Url)
+            const linkMatch = content.match(/\[(.*?)\]\((.*?)\)/);
+            if (linkMatch) {
+                title = linkMatch[1];
+                url = linkMatch[2];
+            } else {
+                // 如果不是链接格式，就纯文本显示
+                title = content;
+            }
+
+            // 生成卡片 HTML
+            html += `
+            <a href="${url}" target="_blank" class="resource-card">
+                <div class="card-icon">🔗</div>
+                <div class="card-info">
+                    <h4>${title}</h4>
+                    <p>${desc || '点击访问资源'}</p>
+                </div>
+            </a>`;
         }
     });
 
-    sidebarHtml += '</ul>';
-    contentHtml += '</div></section>'; // 闭合最后的标签
-
-    return `<aside class="sidebar">${sidebarHtml}</aside><main class="content">${contentHtml}</main>`;
+    closeGrid(); // 最后记得关闭所有标签
+    html += `</section>`; 
+    
+    return html;
 }
-
 // 解析单行链接数据: - ✅ <名称> - 描述
 function parseLinkItem(line) {
     // 简单的正则提取
