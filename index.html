@@ -3,36 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的储物间</title>
+    <title>我的资源导航</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app"></div> 
+    <!-- 左侧侧边栏 -->
+    <aside class="sidebar">
+        <div class="logo">📂 资源库</div>
+        <input type="text" id="search-input" placeholder="搜索资源...">
+        <nav id="toc-container">
+            <!-- 目录将在这里自动生成 -->
+        </nav>
+    </aside>
 
-<!-- 确保引入了 script.js -->
-<script src="script.js"></script>
-    
-    <!-- 顶部搜索栏 -->
-    <header id="header">
-        <h1>📦 我的储物间</h1>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="搜索资源...">
-            <span id="searchCount"></span>
+    <!-- 右侧内容区 -->
+    <main class="content">
+        <div id="app">
+            <!-- Markdown解析后的内容将显示在这里 -->
+            <p>正在加载数据...</p>
         </div>
-        <button id="themeToggle">🌙</button>
-    </header>
-
-    <!-- 左侧导航树 -->
-    <nav id="sidebar">
-        <ul id="navTree"></ul>
-    </nav>
-
-    <!-- 主内容区 -->
-    <main id="content">
-        <!-- Markdown 内容渲染到这里 -->
     </main>
 
-    <!-- 引入 Markdown 解析库 -->
+    <!-- 引入 marked.js 用于解析 Markdown -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
 </body>
