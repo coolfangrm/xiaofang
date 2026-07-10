@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的资源导航</title>
-    <link rel="stylesheet" href="style.css">
-</head>
 <body>
-    <!-- 左侧侧边栏 -->
+    <!-- 左侧导航 -->
     <aside class="sidebar">
-        <div class="logo">📂 资源库</div>
+        <div class="logo">📦 我的储物间</div>
         <input type="text" id="search-input" placeholder="搜索资源...">
         <nav id="toc-container">
-            <!-- 目录将在这里自动生成 -->
+            <!-- JS会自动填充这里 -->
         </nav>
     </aside>
 
-    <!-- 右侧内容区 -->
-    <main class="content">
+    <!-- 右侧内容 -->
+    <main class="main-content">
         <div id="app">
-            <!-- Markdown解析后的内容将显示在这里 -->
+            <!-- JS会自动填充这里 -->
             <p>正在加载数据...</p>
         </div>
     </main>
 
-    <!-- 引入 marked.js 用于解析 Markdown -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html>
