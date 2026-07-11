@@ -4,6 +4,137 @@ let isExpanding = false;
 let isCollapsing = false;
 let searchType = 'partial';
 
+document.addEventListener('DOMContentLoaded', () => {
+    loadContentFromMarkdown();
+});
+
+async function loadContentFromMarkdown() {
+    try {
+        const response = await fetch('data/content.md');
+        if (!response.ok) {
+            console.warn('无法加载 content.md，使用默认内容');
+            return;
+        }
+        const markdown = await response.text();
+        const html = parseMarkdownToHtml(markdown);
+        const contentContainer = document.querySelector('.content');
+        if (contentContainer) {
+            contentContainer.innerHTML = html;
+        }
+        updateHighlightElements();
+    } catch (error) {
+        console.warn('加载 content.md 失败:', error);
+    }
+}
+
+function parseMarkdownToHtml(markdown) {
+    const lines = markdown.split('\n');
+    let html = '';
+    let currentLevel = 0;
+    let inList = false;
+    
+    lines.forEach(line => {
+        if (line.startsWith('# ')) {
+            html += closeTags(currentLevel);
+            html += `<details class="indent-level-1">
+                <summary><span class="folder-icon" data-level="1" style="cursor: pointer;"></span><span class="clickable-title">${escapeHtml(line.slice(2))}</span></summary>
+                <div class="content-container">`;
+            currentLevel = 1;
+            inList = false;
+        } else if (line.startsWith('## ')) {
+            html += closeTags(currentLevel);
+            html += `<details class="indent-level-2">
+                <summary><span class="folder-icon" data-level="2" style="cursor: pointer;"></span><span class="clickable-title">${escapeHtml(line.slice(3))}</span></summary>
+                <div class="content-container">`;
+            currentLevel = 2;
+            inList = false;
+        } else if (line.startsWith('### ')) {
+            html += closeTags(currentLevel);
+            html += `<details class="indent-level-3">
+                <summary><span class="folder-icon" data-level="3" style="cursor: pointer;"></span><span class="clickable-title">${escapeHtml(line.slice(4))}</span></summary>
+                <div class="content-container">`;
+            currentLevel = 3;
+            inList = false;
+        } else if (line.startsWith('#### ')) {
+            html += closeTags(currentLevel);
+            html += `<details class="indent-level-4">
+                <summary><span class="folder-icon" data-level="4" style="cursor: pointer;"></span><span class="clickable-title">${escapeHtml(line.slice(5))}</span></summary>
+                <div class="content-container">`;
+            currentLevel = 4;
+            inList = false;
+        } else if (line.startsWith('- ')) {
+            if (!inList) {
+                html += '<ul>';
+                inList = true;
+            }
+            html += `<li>${parseInlineMarkdown(line.slice(2))}</li>`;
+        } else if (line.trim() === '') {
+            if (inList) {
+                html += '</ul>';
+                inList = false;
+            }
+        } else {
+            if (inList) {
+                html += '</ul>';
+                inList = false;
+            }
+            html += `<p>${parseInlineMarkdown(line)}</p>`;
+        }
+    });
+    
+    html += closeTags(currentLevel);
+    
+    html += `
+        <div class="wechat-section">
+            <div class="wechat-title">欢迎关注我的公众号：小帅随笔</div>
+            <div class="wechat-title">访问量:<span id="busuanzi_value_page_pv"></span>次 | 访客数:<span id="busuanzi_value_site_uv"></span>人</div>
+        </div>
+        <button class="recent-updates-button" title="查看最近更新">🚴‍♀️</button>
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div id="sidebar" class="sidebar-ad">
+            <div class="sidebar-header">
+                <h3>快捷链接</h3>
+            </div>
+            <div class="sidebar-body">
+                <div class="link-section">
+                    <h4>常用站点</h4>
+                    <ul>
+                        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://www.google.com" target="_blank" rel="noopener noreferrer">Google</a></li>
+                        <li><a href="https://www.bing.com" target="_blank" rel="noopener noreferrer">Bing</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>`;
+    
+    return html;
+}
+
+function closeTags(level) {
+    let html = '';
+    for (let i = level; i > 0; i--) {
+        html += '</div></details>';
+    }
+    return html;
+}
+
+function parseInlineMarkdown(text) {
+    text = escapeHtml(text);
+    text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+    text = text.replace(/✅/g, '✅ ');
+    return text;
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+function updateHighlightElements() {
+    highlightElements = [];
+}
+
 function toggleTheme() {
     const body = document.body;
     const themeIcon = document.getElementById('themeIcon');
