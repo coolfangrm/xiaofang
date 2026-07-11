@@ -1,71 +1,67 @@
-# 🎬 影视资源
+# 小帅同学的储物间
 
-## 在线观看
-- ✅ [哔哩哔哩](https://www.bilibili.com) - 国内最大弹幕视频网站
-- ✅ [爱奇艺](https://www.iqiyi.com) - 正版高清视频平台
-- ✅ [优酷](https://www.youku.com) - 阿里旗下视频平台
-- ❌ [YouTube](https://www.youtube.com) - 全球最大视频网站（需魔法）
+## 📢近期公告
+- 2025.02.23 储物间全面更新
+- 失效链接全部替换，标记❌的表示「需要魔法/失效网址」
+- 爆火AI栏大批量更新AI办公、生成图片、视频、音乐、语音等
 
-## 影视下载
-- ✅ [片库](https://www.pianku.tv) - 高清电影资源
-- ✅ [BT之家](https://www.bt之家.com) - BT种子资源站
+### 近期精选：开源软件和网站
+- [Anniversary Gift | TRAE](https://www.trae.ai/2026-anniversary-gift)
+- [GitHub - AndroidCoderPeng/DailyTask: 钉钉自动打卡](https://github.com/AndroidCoderPeng/DailyTask)
+- [GitHub - kanadeblisst00/WechatVideoSniffer2.0: 微信视频号下载工具](https://github.com/kanadeblisst00/WechatVideoSniffer2.0)
+- [GitHub - Frica01/WeChatMassTool: 微信自动发送信息](https://github.com/Frica01/WeChatMassTool)
+- [GitHub - fishjar/kiss-translator: 双语对照翻译扩展](https://github.com/fishjar/kiss-translator)
+- [GitHub - Bistutu/FluentRead: 开源的沉浸式翻译](https://github.com/Bistutu/FluentRead)
 
----
+## 01 爆火 AI🔥
+- [AIHOT——今日热点](https://aihot.virxact.com/)
+- [Arena Leaderboard](https://arena.ai/zh/leaderboard)
 
-# 💻 软件工具
+### 00.AI 编程 & Vibe Coding [更新:2026-04-22]
+#### 00.入门教程
+- [教程：Vibe Vibe](https://www.vibevibe.cn/)
+- [教程：Vibe Coding 学习路线图](https://jiangren.com.au/roadmaps/vibe-coding)
 
-## 系统工具
-- ✅ [Everything](https://www.voidtools.com) - 极速文件搜索工具
-- ✅ [Snipaste](https://www.snipaste.com) - 截图贴图神器
-- ✅ [Ditto](https://ditto-cp.sourceforge.io) - 剪贴板增强工具
+#### 01.Agent 工具
+- [OpenClaw-开源](https://github.com/openclaw/openclaw)
+- [Hermes Agent | Nous Research](https://hermes-agent.nousresearch.com/)
 
-## 办公效率
-- ✅ [Notion](https://www.notion.so) - 全能笔记与协作平台
-- ✅ [Typora](https://typora.io) - 所见即所得的 Markdown 编辑器
-- ✅ [uTools](https://www.u.tools) - 新一代效率工具平台
+## 02 电脑软件
+### 浏览器
+- [Google Chrome](https://www.google.com/chrome)
+- [Microsoft Edge](https://www.microsoft.com/edge)
 
-## 开发工具
-- ✅ [VS Code](https://code.visualstudio.com) - 微软出品的代码编辑器
-- ✅ [GitHub Desktop](https://desktop.github.com) - Git 图形化客户端
-- ❌ [Stack Overflow](https://stackoverflow.com) - 开发者问答社区（需魔法）
+## 03 手机软件
+- 手机应用和工具推荐
 
----
+## 04 全端软件
+- 跨平台软件集合
 
-# 📚 学习资源
+## 05 实用网站
+### 在线工具
+- [百度搜索](https://www.baidu.com)
+- [Google搜索](https://www.google.com)
 
-## 编程学习
-- ✅ [菜鸟教程](https://www.runoob.com) - 编程入门教程大全
-- ✅ [MDN Web Docs](https://developer.mozilla.org/zh-CN) - Web 开发权威文档
-- ✅ [LeetCode](https://leetcode.cn) - 算法刷题平台
+## 06 影音专区
+- 影视、音乐、动漫资源
 
-## 设计资源
-- ✅ [Iconfont](https://www.iconfont.cn) - 阿里巴巴矢量图标库
-- ✅ [Unsplash](https://unsplash.com) - 免费高清图片素材
-- ✅ [Dribbble](https://dribbble.com) - 设计师作品展示平台
+## 07 游戏专栏
+- 游戏资源和攻略
 
----
+## 08 冷门网站
+- 有趣的冷门网站
 
-# 🛠️ 在线工具
+## 09 资源套萃
+- 精选资源合集
 
-## 实用工具
-- ✅ [ProcessOn](https://www.processon.com) - 在线流程图/思维导图
-- ✅ [TinyPNG](https://tinypng.com) - 图片无损压缩
-- ✅ [草料二维码](https://cli.im) - 在线二维码生成器
+## 10 共同进步
+- 学习交流和分享
 
-## AI 工具
-- ✅ [ChatGPT](https://chat.openai.com) - OpenAI 对话模型
-- ✅ [文心一言](https://yiyan.baidu.com) - 百度大语言模型
-- ✅ [通义千问](https://tongyi.aliyun.com) - 阿里大语言模型
+## 11 小帅随笔
+- 个人随笔和思考
 
----
+## 12 学习指南
+- 学习资源和教程
 
-# 📖 阅读与知识
-
-## 电子书
-- ✅ [微信读书](https://weread.qq.com) - 正版电子书阅读平台
-- ✅ [鸠摩搜书](https://www.jiumodiary.com) - 电子书搜索引擎
-
-## 博客与社区
-- ✅ [掘金](https://juejin.cn) - 开发者技术社区
-- ✅ [知乎](https://www.zhihu.com) - 中文问答社区
-- ✅ [V2EX](https://www.v2ex.com) - 创意工作者社区
+## 13 加密内容
+- 需要密码访问的内容
