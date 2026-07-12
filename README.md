@@ -1,4 +1,4 @@
-# 小帅同学的储物间
+# 小方同学的储物间https://github.com/coolfangrm/xiaofang/
 
 > 一个基于纯 HTML/CSS/JS 的树形目录导航网站，复刻自 [xiaoshuai.link/locker](https://xiaoshuai.link/locker/) 的设计。
 
