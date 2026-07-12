@@ -5,33 +5,28 @@ let isCollapsing = false;
 let searchType = 'partial';
 
 function loadContentFromMarkdown() {
-    const basePath = window.location.pathname.replace(/\/[^\/]+$/, '');
-    const url = `${basePath}/data/content.md`;
-    
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
+    xhr.open('GET', 'data/content.md', true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
                 const markdown = xhr.responseText;
                 const html = parseMarkdownToHtml(markdown);
-                const container = document.querySelector('.content');
+                var container = document.getElementById('main-content');
                 if (container) container.innerHTML = html;
             } else {
                 console.log('尝试其他路径...');
                 var xhr2 = new XMLHttpRequest();
-                xhr2.open('GET', 'data/content.md', true);
+                xhr2.open('GET', '/xiaofang/data/content.md', true);
                 xhr2.onreadystatechange = function() {
                     if (xhr2.readyState === 4) {
                         if (xhr2.status === 200) {
                             const markdown = xhr2.responseText;
                             const html = parseMarkdownToHtml(markdown);
-                            const container = document.querySelector('.content');
+                            var container = document.getElementById('main-content');
                             if (container) container.innerHTML = html;
                         } else {
-                            console.log('content.md 加载失败，使用默认内容');
-                            const container = document.querySelector('.content');
-                            if (container) container.innerHTML = getDefaultContent();
+                            console.log('content.md 加载失败');
                         }
                     }
                 };
@@ -314,5 +309,6 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, starting loadContentFromMarkdown...');
     loadContentFromMarkdown();
 });
