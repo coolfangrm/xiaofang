@@ -1,16 +1,9 @@
-# 小帅同学的储物间
+# 小方同学的储物间
 
 ## 📢近期公告
 2025.02.23 储物间全面更新，具体可查看文章：[从永硕E盘到智能本地化管理：3次迭代的储物间有多能打！](https://mp.weixin.qq.com/s/4iu8ZsqzpAzBF2PsrYgqww)
 
 - 💨1，失效链接全部替换，标记❌的表示「需要魔法/失效网址」
-- 💨2，爆火AI栏大批量更新AI办公、生成图片、视频、音乐、语音等
-- 💨3，02-10-1 栏增加最新版离线下载的浏览器(谷歌、微软等)
-- 💨4，02-12 栏更新大批量 Adobe 全家桶下载地址
-- 💨5，07-05 栏更新大批量洛雪音乐音源地址
-- 💨6，03-03 栏更新大批量电子书/漫画源地址
-- 💨7，06-01 栏更新大批量影视观看/下载地址
-- 💨8，储物间替换阿里的 Thoughts 文档分享的失效软件/教程链接
 
 ### 近期精选：开源软件和网站
 - Trae国际版免费领取600次所有AI模型的使用，领取地址：- ✅ [Anniversary Gift | TRAE - Collaborate with Intelligence](https://www.trae.ai/2026-anniversary-gift)
@@ -27,7 +20,7 @@
 - ✅ [Arena Leaderboard | Compare & Benchmark the Best Frontier AI Models（AI最新榜单）👍](https://arena.ai/zh/leaderboard)
 
 ### 00.AI 编程 & Vibe Coding
-不写代码，也能做产品；写代码，AI 帮你写得更好
+    ####不写代码，也能做产品；写代码，AI 帮你写得更好
 
 #### 00.入门教程
 - ✅ [教程：Vibe Vibe](https://www.vibevibe.cn/)【人人都能 AI 创造】
