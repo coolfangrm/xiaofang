@@ -5,28 +5,38 @@ let isCollapsing = false;
 let searchType = 'partial';
 
 function loadContentFromMarkdown() {
+    var basePath = window.location.pathname;
+    if (basePath.indexOf('/xiaofang/') !== -1) {
+        basePath = '/xiaofang';
+    } else {
+        basePath = '';
+    }
+    
+    var url = basePath + '/data/content.md';
+    
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'data/content.md', true);
+    xhr.open('GET', url, true);
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) {
             if (xhr.status === 200) {
-                const markdown = xhr.responseText;
-                const html = parseMarkdownToHtml(markdown);
+                var markdown = xhr.responseText;
+                var html = parseMarkdownToHtml(markdown);
                 var container = document.getElementById('main-content');
-                if (container) container.innerHTML = html;
+                if (container) {
+                    container.innerHTML = html;
+                }
             } else {
-                console.log('尝试其他路径...');
                 var xhr2 = new XMLHttpRequest();
-                xhr2.open('GET', '/xiaofang/data/content.md', true);
+                xhr2.open('GET', 'data/content.md', true);
                 xhr2.onreadystatechange = function() {
                     if (xhr2.readyState === 4) {
                         if (xhr2.status === 200) {
-                            const markdown = xhr2.responseText;
-                            const html = parseMarkdownToHtml(markdown);
+                            var markdown = xhr2.responseText;
+                            var html = parseMarkdownToHtml(markdown);
                             var container = document.getElementById('main-content');
-                            if (container) container.innerHTML = html;
-                        } else {
-                            console.log('content.md 加载失败');
+                            if (container) {
+                                container.innerHTML = html;
+                            }
                         }
                     }
                 };
@@ -38,13 +48,13 @@ function loadContentFromMarkdown() {
 }
 
 function parseMarkdownToHtml(markdown) {
-    const lines = markdown.split('\n');
-    let html = '';
-    let currentLevel = 0;
-    let inList = false;
+    var lines = markdown.split('\n');
+    var html = '';
+    var currentLevel = 0;
+    var inList = false;
     
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i];
         
         if (line.startsWith('# ')) {
             html += closeTags(currentLevel);
@@ -93,8 +103,8 @@ function parseMarkdownToHtml(markdown) {
 }
 
 function closeTags(level) {
-    let html = '';
-    for (let i = level; i > 0; i--) {
+    var html = '';
+    for (var i = level; i > 0; i--) {
         html += '</div></details>';
     }
     return html;
@@ -107,18 +117,14 @@ function parseInlineMarkdown(text) {
 }
 
 function escapeHtml(text) {
-    const div = document.createElement('div');
+    var div = document.createElement('div');
     div.textContent = text;
     return div.innerHTML;
 }
 
-function getDefaultContent() {
-    return '<details class="indent-level-1"><summary><span class="folder-icon" data-level="1"></span><span class="clickable-title">📢近期公告</span></summary><div class="content-container"><p>加载失败，请检查网络连接</p></div></details>';
-}
-
 function toggleTheme() {
-    const body = document.body;
-    const themeIcon = document.getElementById('themeIcon');
+    var body = document.body;
+    var themeIcon = document.getElementById('themeIcon');
     body.classList.toggle('dark-theme');
     themeIcon.textContent = body.classList.contains('dark-theme') ? '🌙' : '💧';
 }
@@ -126,14 +132,20 @@ function toggleTheme() {
 function expandAll() {
     if (isExpanding) return;
     isExpanding = true;
-    document.querySelectorAll('details').forEach(function(d) { d.open = true; });
+    var details = document.querySelectorAll('details');
+    for (var i = 0; i < details.length; i++) {
+        details[i].open = true;
+    }
     isExpanding = false;
 }
 
 function collapseAll() {
     if (isCollapsing) return;
     isCollapsing = true;
-    document.querySelectorAll('details').forEach(function(d) { d.open = false; });
+    var details = document.querySelectorAll('details');
+    for (var i = 0; i < details.length; i++) {
+        details[i].open = false;
+    }
     isCollapsing = false;
 }
 
@@ -147,8 +159,11 @@ function hideSearchTypeDropdown() {
 
 function selectSearchType(type) {
     searchType = type;
-    const text = document.getElementById('searchTypeText');
-    document.querySelectorAll('.search-type-option').forEach(function(opt) { opt.classList.remove('selected'); });
+    var text = document.getElementById('searchTypeText');
+    var opts = document.querySelectorAll('.search-type-option');
+    for (var i = 0; i < opts.length; i++) {
+        opts[i].classList.remove('selected');
+    }
     event.target.classList.add('selected');
     
     if (type === 'partial') text.textContent = '本站搜索';
@@ -172,7 +187,7 @@ function hideEngineDropdown() {
 }
 
 function handleSearch() {
-    const query = document.getElementById('searchInput').value.trim();
+    var query = document.getElementById('searchInput').value.trim();
     if (!query) return;
     
     if (searchType === 'partial') {
@@ -183,30 +198,32 @@ function handleSearch() {
 }
 
 function localSearch(query) {
-    const content = document.querySelectorAll('.content-container p, .content-container li, .content-container a, summary .clickable-title');
+    var content = document.querySelectorAll('.content-container p, .content-container li, .content-container a, summary .clickable-title');
     highlightElements = [];
     
-    content.forEach(function(el) {
-        const text = el.textContent.toLowerCase();
-        if (text.includes(query.toLowerCase())) {
+    for (var i = 0; i < content.length; i++) {
+        var el = content[i];
+        var text = el.textContent.toLowerCase();
+        if (text.indexOf(query.toLowerCase()) !== -1) {
             highlightElements.push(el);
             el.innerHTML = el.innerHTML.replace(new RegExp(query, 'gi'), function(match) { return '<span class="highlight">' + match + '</span>'; });
         }
-    });
+    }
     
     highlightIndex = 0;
     updateHighlight();
 }
 
 function updateHighlight() {
-    highlightElements.forEach(function(el, idx) {
-        if (idx === highlightIndex) {
+    for (var i = 0; i < highlightElements.length; i++) {
+        var el = highlightElements[i];
+        if (i === highlightIndex) {
             el.classList.add('active-highlight');
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } else {
             el.classList.remove('active-highlight');
         }
-    });
+    }
 }
 
 function prevHighlight() {
@@ -222,18 +239,19 @@ function nextHighlight() {
 }
 
 function searchEngines(query) {
-    const engines = [];
-    document.querySelectorAll('#engineDropdown input[type="checkbox"]:checked').forEach(function(cb) {
-        engines.push(cb.value);
-    });
+    var engines = [];
+    var cbs = document.querySelectorAll('#engineDropdown input[type="checkbox"]:checked');
+    for (var i = 0; i < cbs.length; i++) {
+        engines.push(cbs[i].value);
+    }
     
     if (engines.length === 0) {
         alert('请至少选择一个搜索引擎');
         return;
     }
     
-    const firstEngine = engines[0];
-    let url = '';
+    var firstEngine = engines[0];
+    var url = '';
     
     switch(firstEngine) {
         case 'bing': url = 'https://www.bing.com/search?q=' + encodeURIComponent(query); break;
@@ -278,24 +296,27 @@ document.addEventListener('click', function(e) {
 var recommendedEngines = ['bing', 'google', 'weixin', '52pojie', 'linuxdo', 'bilibili'];
 
 document.getElementById('selectRecommendedEngines').addEventListener('change', function(e) {
-    document.querySelectorAll('#engineDropdown input[type="checkbox"]').forEach(function(cb) {
-        if (recommendedEngines.indexOf(cb.value) !== -1) {
-            cb.checked = e.target.checked;
+    var cbs = document.querySelectorAll('#engineDropdown input[type="checkbox"]');
+    for (var i = 0; i < cbs.length; i++) {
+        if (recommendedEngines.indexOf(cbs[i].value) !== -1) {
+            cbs[i].checked = e.target.checked;
         }
-    });
+    }
     updateEngineSelectionText();
 });
 
 document.getElementById('selectAllEngines').addEventListener('change', function(e) {
-    document.querySelectorAll('#engineDropdown input[type="checkbox"]').forEach(function(cb) {
-        cb.checked = e.target.checked;
-    });
+    var cbs = document.querySelectorAll('#engineDropdown input[type="checkbox"]');
+    for (var i = 0; i < cbs.length; i++) {
+        cbs[i].checked = e.target.checked;
+    }
     updateEngineSelectionText();
 });
 
-document.querySelectorAll('#engineDropdown input[type="checkbox"]').forEach(function(cb) {
-    cb.addEventListener('change', updateEngineSelectionText);
-});
+var cbs = document.querySelectorAll('#engineDropdown input[type="checkbox"]');
+for (var i = 0; i < cbs.length; i++) {
+    cbs[i].addEventListener('change', updateEngineSelectionText);
+}
 
 function updateEngineSelectionText() {
     var checked = document.querySelectorAll('#engineDropdown input[type="checkbox"]:checked');
@@ -309,6 +330,5 @@ document.getElementById('searchInput').addEventListener('keydown', function(e) {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, starting loadContentFromMarkdown...');
     loadContentFromMarkdown();
 });
