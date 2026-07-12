@@ -167,12 +167,8 @@ function selectSearchType(type) {
     event.target.classList.add('selected');
     
     if (type === 'partial') text.textContent = '本站搜索';
-    else if (type === 'pan') text.textContent = '帅盘搜索';
-    else if (type === 'pan_api') text.textContent = '聚合搜索';
     else if (type === 'engine') text.textContent = '联网搜索';
     
-    document.getElementById('panFilters').style.display = type === 'pan' ? 'flex' : 'none';
-    document.getElementById('shuaiPanFilters').style.display = type === 'pan_api' ? 'flex' : 'none';
     document.getElementById('engineFilters').style.display = type === 'engine' ? 'flex' : 'none';
     
     hideSearchTypeDropdown();
@@ -250,18 +246,28 @@ function searchEngines(query) {
         return;
     }
     
-    var firstEngine = engines[0];
-    var url = '';
-    
-    switch(firstEngine) {
-        case 'bing': url = 'https://www.bing.com/search?q=' + encodeURIComponent(query); break;
-        case 'google': url = 'https://www.google.com/search?q=' + encodeURIComponent(query); break;
-        case 'baidu': url = 'https://www.baidu.com/s?wd=' + encodeURIComponent(query); break;
-        case 'ddgo': url = 'https://duckduckgo.com/?q=' + encodeURIComponent(query); break;
-        default: url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
+    for (var j = 0; j < engines.length; j++) {
+        var engine = engines[j];
+        var url = '';
+        
+        switch(engine) {
+            case 'bing': url = 'https://www.bing.com/search?q=' + encodeURIComponent(query); break;
+            case 'google': url = 'https://www.google.com/search?q=' + encodeURIComponent(query); break;
+            case 'baidu': url = 'https://www.baidu.com/s?wd=' + encodeURIComponent(query); break;
+            case 'bilibili': url = 'https://search.bilibili.com/all?keyword=' + encodeURIComponent(query); break;
+            case 'zhihu': url = 'https://www.zhihu.com/search?type=content&q=' + encodeURIComponent(query); break;
+            case 'weixin': url = 'https://weixin.sogou.com/weixin?type=2&query=' + encodeURIComponent(query); break;
+            case '52pojie': url = 'https://www.52pojie.cn/search.php?mod=forum&searchid=' + encodeURIComponent(query); break;
+            case 'linuxdo': url = 'https://linux.do/search?q=' + encodeURIComponent(query); break;
+            case 'youtube': url = 'https://www.youtube.com/results?search_query=' + encodeURIComponent(query); break;
+            case 'douyin': url = 'https://www.douyin.com/search/' + encodeURIComponent(query); break;
+            case 'sogou': url = 'https://www.sogou.com/web?query=' + encodeURIComponent(query); break;
+            case 'ddgo': url = 'https://duckduckgo.com/?q=' + encodeURIComponent(query); break;
+            default: url = 'https://www.bing.com/search?q=' + encodeURIComponent(query);
+        }
+        
+        window.open(url, '_blank');
     }
-    
-    window.open(url, '_blank');
 }
 
 function toggleSidebar() {
@@ -293,7 +299,7 @@ document.addEventListener('click', function(e) {
     }
 });
 
-var recommendedEngines = ['bing', 'google', 'weixin', '52pojie', 'linuxdo', 'bilibili'];
+var recommendedEngines = ['bing', 'google', 'baidu', 'bilibili', 'zhihu', 'weixin', '52pojie', 'linuxdo'];
 
 document.getElementById('selectRecommendedEngines').addEventListener('change', function(e) {
     var cbs = document.querySelectorAll('#engineDropdown input[type="checkbox"]');

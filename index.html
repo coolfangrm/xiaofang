@@ -39,40 +39,15 @@
                         </div>
                         <div id="searchTypeDropdown" class="search-type-dropdown" onmouseenter="showSearchTypeDropdown()" onmouseleave="hideSearchTypeDropdown()">
                             <div class="search-type-option selected" data-value="partial" onclick="selectSearchType('partial')">本站搜索</div>
-                            <div class="search-type-option" data-value="pan" onclick="selectSearchType('pan')">帅盘搜索</div>
-                            <div class="search-type-option" data-value="pan_api" onclick="selectSearchType('pan_api')">聚合搜索</div>
                             <div class="search-type-option" data-value="engine" onclick="selectSearchType('engine')">联网搜索</div>
                         </div>
                     </div>
                     <button onclick="handleSearch()">搜索</button>
                 </div>
-                <div id="panFilters" class="button-group" style="display:none;flex-wrap:wrap;gap:8px;align-items:center;">
-                    <select id="panType" title="网盘类型">
-                        <option value="">全部网盘</option>
-                        <option value="夸克网盘">夸克网盘</option>
-                        <option value="百度网盘">百度网盘</option>
-                        <option value="阿里云盘">阿里云盘</option>
-                        <option value="天翼云盘">天翼云盘</option>
-                        <option value="UC网盘">UC网盘</option>
-                        <option value="移动云盘">移动云盘</option>
-                        <option value="115网盘">115网盘</option>
-                        <option value="PikPak">PikPak</option>
-                        <option value="迅雷网盘">迅雷网盘</option>
-                        <option value="123网盘">123网盘</option>
-                        <option value="磁力链接">磁力链接</option>
-                        <option value="电驴链接">电驴链接</option>
-                    </select>
-                </div>
-                <div id="shuaiPanFilters" class="button-group" style="display:none;flex-wrap:wrap;gap:8px;align-items:center;">
-                    <select id="shuaiPanType" title="网盘类型">
-                        <option value="夸克网盘">夸克网盘</option>
-                        <option value="百度网盘">百度网盘</option>
-                    </select>
-                </div>
                 <div id="engineFilters" class="button-group" style="display:none;flex-wrap:wrap;gap:8px;align-items:center;position:relative;overflow:visible;">
                     <div class="multi-select-container">
                         <div class="multi-select-trigger" onmouseenter="showEngineDropdown()" onmouseleave="hideEngineDropdown()">
-                            <span id="engineSelectionText">已选择 6 个引擎</span>
+                            <span id="engineSelectionText">已选择 8 个引擎</span>
                             <span class="dropdown-arrow">▼</span>
                         </div>
                         <div id="engineDropdown" class="multi-select-dropdown" onmouseenter="showEngineDropdown()" onmouseleave="hideEngineDropdown()">
@@ -92,27 +67,19 @@
                                     <span>必应搜索</span>
                                 </label>
                                 <label class="dropdown-option">
-                                    <input type="checkbox" value="ddgo">
-                                    <span>DDGO搜索</span>
-                                </label>
-                                <label class="dropdown-option">
-                                    <input type="checkbox" value="baidu">
-                                    <span>百度搜索</span>
-                                </label>
-                                <label class="dropdown-option">
-                                    <input type="checkbox" value="sogou">
-                                    <span>搜狗搜索</span>
-                                </label>
-                                <label class="dropdown-option">
                                     <input type="checkbox" value="google" checked="">
                                     <span>谷歌搜索</span>
                                 </label>
                                 <label class="dropdown-option">
-                                    <input type="checkbox" value="yandex">
-                                    <span>Yandex搜索</span>
+                                    <input type="checkbox" value="baidu" checked="">
+                                    <span>百度搜索</span>
                                 </label>
                                 <label class="dropdown-option">
-                                    <input type="checkbox" value="zhihu">
+                                    <input type="checkbox" value="bilibili" checked="">
+                                    <span>B站搜索</span>
+                                </label>
+                                <label class="dropdown-option">
+                                    <input type="checkbox" value="zhihu" checked="">
                                     <span>知乎搜索</span>
                                 </label>
                                 <label class="dropdown-option">
@@ -128,16 +95,20 @@
                                     <span>LinuxDo</span>
                                 </label>
                                 <label class="dropdown-option">
+                                    <input type="checkbox" value="youtube">
+                                    <span>YouTube搜索</span>
+                                </label>
+                                <label class="dropdown-option">
                                     <input type="checkbox" value="douyin">
                                     <span>抖音搜索</span>
                                 </label>
                                 <label class="dropdown-option">
-                                    <input type="checkbox" value="bilibili" checked="">
-                                    <span>B站搜索</span>
+                                    <input type="checkbox" value="sogou">
+                                    <span>搜狗搜索</span>
                                 </label>
                                 <label class="dropdown-option">
-                                    <input type="checkbox" value="youtube">
-                                    <span>YouTube搜索</span>
+                                    <input type="checkbox" value="ddgo">
+                                    <span>DuckDuckGo</span>
                                 </label>
                             </div>
                         </div>
